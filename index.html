@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HG Brief — March 17, 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:         #F7F5F2;
+      --surface:    #FFFFFF;
+      --border:     #E5E2DE;
+      --border-soft:#EFEDE9;
+      --text:       #111111;
+      --text-sec:   #7A756F;
+      --text-dim:   #B8B3AC;
+      --accent:     #C9A96E;
+      --accent-bg:  rgba(201,169,110,0.09);
+      --ff-display: 'Syne', sans-serif;
+      --ff-body:    'Space Grotesk', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--ff-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Page shell ── */
+    .page {
+      width: 100%;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 32px 96px;
+    }
+
+    /* ── Top bar ── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      opacity: 0;
+      animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) 0.05s forwards;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    .logo-text {
+      font-family: var(--ff-display);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .topbar-date {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+
+    /* ── Greeting ── */
+    .greeting {
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) 0.1s forwards;
+    }
+
+    .greeting-eyebrow {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+      margin-bottom: 10px;
+    }
+
+    .greeting-headline {
+      font-family: var(--ff-display);
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .greeting-headline em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    /* ── Sections card ── */
+    .sections {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 6px 24px rgba(0,0,0,0.06);
+      opacity: 0;
+      animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) 0.18s forwards;
+    }
+
+    /* ── Section ── */
+    .section { border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+
+    /* Section header row */
+    .section-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.12s ease;
+    }
+    .section-trigger:hover { background: #FAFAF8; }
+
+    .section-left { display: flex; align-items: center; gap: 10px; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+
+    .section-count {
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .s-chevron {
+      width: 15px; height: 15px;
+      color: var(--text-dim);
+      flex-shrink: 0;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), color 0.12s ease;
+    }
+    .section.open .s-chevron { transform: rotate(180deg); color: var(--accent); }
+
+    /* Section body accordion */
+    .section-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.32s cubic-bezier(0.4,0,0.2,1);
+    }
+    .section.open .section-body { grid-template-rows: 1fr; }
+    .section-inner { overflow: hidden; }
+
+    /* ── Items list ── */
+    .items { padding-bottom: 4px; }
+
+    /* Item row */
+    .item {
+      border-top: 1px solid var(--border-soft);
+      position: relative;
+    }
+
+    /* Brass left accent on hover */
+    .item::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 8px;
+      width: 2px; border-radius: 2px;
+      background: var(--accent);
+      opacity: 0;
+      transform: scaleY(0.3);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .item:hover::before { opacity: 1; transform: scaleY(1); }
+
+    /* Item trigger (collapsed state) */
+    .item-trigger {
+      display: grid;
+      grid-template-columns: 36px 1fr 20px;
+      align-items: center;
+      gap: 0 8px;
+      padding: 13px 20px;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      transition: background 0.12s ease;
+    }
+    .item-trigger:hover { background: #FDFCFB; }
+    .item.open .item-trigger { background: #FDFCFB; }
+
+    .item-num {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+    }
+
+    .item-title {
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--text);
+    }
+
+    .i-chevron {
+      width: 13px; height: 13px;
+      color: var(--text-dim);
+      justify-self: end;
+      flex-shrink: 0;
+      transition: transform 0.25s cubic-bezier(0.4,0,0.2,1), color 0.12s ease;
+    }
+    .item.open .i-chevron { transform: rotate(180deg); color: var(--accent); }
+
+    /* Item body accordion */
+    .item-body {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.28s cubic-bezier(0.4,0,0.2,1);
+    }
+    .item.open .item-body { grid-template-rows: 1fr; }
+    .item-body-inner { overflow: hidden; }
+
+    .item-detail {
+      padding: 0 20px 14px 64px;
+    }
+
+    .item-summary {
+      font-size: 12.5px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: #555250;
+      margin-bottom: 10px;
+    }
+
+    .item-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      transition: color 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+    }
+    .item-link:hover {
+      color: var(--accent);
+      border-color: rgba(201,169,110,0.4);
+      background: var(--accent-bg);
+    }
+    .item-link svg {
+      width: 8px; height: 8px;
+      stroke: currentColor; fill: none;
+      stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      opacity: 0;
+      animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) 0.26s forwards;
+    }
+    .footer-note { font-size: 10px; letter-spacing: 0.04em; color: var(--text-dim); }
+    .footer-note em { font-style: normal; color: var(--text-sec); }
+
+    /* ── Animation ── */
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .page { padding: 36px 16px 72px; }
+      .item-detail { padding-left: 44px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <header class="topbar">
+    <div class="logo-wrap">
+      <img src="logo.png" alt="HG" class="logo-img">
+      <span class="logo-text">GoelStudio</span>
+    </div>
+    <span class="topbar-date">March 17, 2026</span>
+  </header>
+
+  <div class="greeting">
+    <span class="greeting-eyebrow">Daily Brief</span>
+    <h1 class="greeting-headline">Good afternoon, <em>HG.</em><br>Here's your brief.</h1>
+  </div>
+
+  <div class="sections">
+
+    <!-- ── YOUR WORLD ── -->
+    <div class="section open">
+      <div class="section-trigger" onclick="toggleSection(this)">
+        <div class="section-left">
+          <span class="section-label">Your World</span>
+          <span class="section-count">5 items</span>
+        </div>
+        <svg class="s-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="section-inner">
+          <div class="items">
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">01</span>
+                <span class="item-title">Auston Matthews: Season Over — MCL Tear</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Auston Matthews tore his MCL — season over after a knee-on-knee hit from Ducks captain Radko Gudas. Bo Groulx stepped up with his first career multi-goal game in a 4-2 W over the Wild.</p>
+                  <a href="https://www.nhl.com/news/toronto-maple-leafs-minnesota-wild-game-recap-march-15-2026" class="item-link" target="_blank">NHL.com <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">02</span>
+                <span class="item-title">Leafs Without Matthews: Who Steps Up?</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Leafs navigating the final stretch without Matthews — Hockey Writers breaks down who steps into the void for the playoff push.</p>
+                  <a href="https://thehockeywriters.com/maple-leafs-week-ahead-schedule-storylines-life-without-matthews-final-stretch-more/" class="item-link" target="_blank">The Hockey Writers <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">03</span>
+                <span class="item-title">Gausman Gets Opening Day Nod for Blue Jays</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Kevin Gausman confirmed as Opening Day starter March 27 vs. the A's at Rogers Centre — Jays enter as AL favorites after last year's pennant run.</p>
+                  <a href="https://www.tsn.ca/mlb/article/gausman-gets-opening-day-start-for-blue-jays/" class="item-link" target="_blank">TSN <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">04</span>
+                <span class="item-title">Bichette to Mets; Jays Add Cease & Okamoto</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Bo Bichette gone — 3-year, $126M deal with the Mets. Blue Jays added Dylan Cease and Kazuma Okamoto to offset the loss heading into 2026.</p>
+                  <a href="https://bluejaysnation.com/news/projecting-toronto-blue-jays-opening-day-roster-2026-season-nears" class="item-link" target="_blank">Blue Jays Nation <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">05</span>
+                <span class="item-title">Snøhetta, BIG & MVRDV Reveal Istanbul Masterplan</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Snøhetta, BIG, and MVRDV collaborating on Ion Riva — an 84-hectare residential masterplan on Istanbul's Black Sea coast, first phase delivering 969 homes by 2027.</p>
+                  <a href="https://www.dezeen.com/2026/03/10/snohetta-big-mvrdv-ion-riva-masterplan/" class="item-link" target="_blank">Dezeen <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── BUSINESS INTEL ── -->
+    <div class="section">
+      <div class="section-trigger" onclick="toggleSection(this)">
+        <div class="section-left">
+          <span class="section-label">Business Intel</span>
+          <span class="section-count">5 items</span>
+        </div>
+        <svg class="s-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="section-inner">
+          <div class="items">
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">01</span>
+                <span class="item-title">New BIM + AI Tool Targets Canada's Permit Backlog</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">A new BIM + AI building permit automation tool generating buzz in Canada as a housing crisis response — directly relevant to your Toronto approvals workflow.</p>
+                  <a href="https://digitalsupercluster.ca/new-bim-and-ai-building-permit-automation-tool-sparks-hope-in-canadas-housing-crisis/" class="item-link" target="_blank">Digital Supercluster <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">02</span>
+                <span class="item-title">Vancouver's Bill 44 vs. Toronto's Multiplex Talk</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Vancouver's Bill 44 multiplex zoning is well past Toronto's talk stage — 441,750 multi-gen households growing 21.2%, with AI tools analyzing 86,000+ lots for eligibility.</p>
+                  <a href="https://www.vanplex.ca/blog/toronto-talking-vancouver-building-multigenerational-2026" class="item-link" target="_blank">VanPlex <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">03</span>
+                <span class="item-title">Stantec: "Vibe Coding" and Real-Time AI Hit AEC in 2026</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Stantec's 2026 AEC trends piece digs into "vibe coding" and real-time AI analysis hitting architecture practices now — worth a read for workflow planning.</p>
+                  <a href="https://www.stantec.com/en/ideas/topic/buildings/2026-aec-trends-part-2-ai-in-architecture-vibe-coding-real-time-analysis-data" class="item-link" target="_blank">Stantec <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">04</span>
+                <span class="item-title">46% of Architects Now Use AI — Canada Reacts</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Canadian architects grapple with AI excitement and job disruption — ConstructConnect covers the profession's split reaction as adoption hits 46% of firms.</p>
+                  <a href="https://canada.constructconnect.com/dcn/news/technology/2026/03/architects-face-an-ai-future-of-excitement-and-disruption" class="item-link" target="_blank">ConstructConnect Canada <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">05</span>
+                <span class="item-title">ArchiCAD + Claude: Open-Source MCP Server Lands</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Open-source archicad-mcp server lets Claude and ChatGPT interact directly with ArchiCAD models — potentially a real workflow accelerator for your practice.</p>
+                  <a href="https://www.myarchitectai.com/blog/archicad-ai-tools" class="item-link" target="_blank">MyArchitectAI <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── NEWSLETTER RECAP ── -->
+    <div class="section">
+      <div class="section-trigger" onclick="toggleSection(this)">
+        <div class="section-left">
+          <span class="section-label">Newsletter Recap</span>
+          <span class="section-count">5 items</span>
+        </div>
+        <svg class="s-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+      </div>
+      <div class="section-body">
+        <div class="section-inner">
+          <div class="items">
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">01</span>
+                <span class="item-title">Heatherwick, MVRDV & Mecanoo Compete for €240M Rotterdam Landmark</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Heatherwick Studio, MVRDV, and Mecanoo shortlisted for a €240M "new world wonder" sustainability landmark in Rotterdam — winner announced spring 2026.</p>
+                  <a href="https://www.dezeen.com/2026/03/04/shift-world-wonder-competition-shortlist/" class="item-link" target="_blank">Dezeen <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">02</span>
+                <span class="item-title">OMA Opens Mushroom Pavilion for Casa Wabi</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">OMA's domed mushroom-production pavilion for Fundación Casa Wabi opened March 4 — ellipsoidal, agricultural, and very OMA.</p>
+                  <a href="https://www.dezeen.com/architecture/" class="item-link" target="_blank">Dezeen <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">03</span>
+                <span class="item-title">SOM Reveals Two-Tower "Iconic Complex" in Kazakhstan</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">SOM revealed a two-tower "Iconic Complex" masterplan in Kazakhstan — Gateway District adds another mega-project to SOM's global pipeline.</p>
+                  <a href="https://www.dezeen.com/news/" class="item-link" target="_blank">Dezeen <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">04</span>
+                <span class="item-title">Graphisoft's AC28 AI Visualizer Goes Cloud-Native</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Graphisoft's ArchiCAD AI Visualizer (Stable Diffusion-powered, auto-installed from AC28) is now cloud-based — no heavy hardware needed for real-time concept visualization.</p>
+                  <a href="https://www.graphisoft.com/solutions/innovation/archicad-ai-visualizer/" class="item-link" target="_blank">Graphisoft <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+            <div class="item">
+              <div class="item-trigger" onclick="toggleItem(this)">
+                <span class="item-num">05</span>
+                <span class="item-title">Mass Timber Conference Among March's Key Design Events</span>
+                <svg class="i-chevron" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6l4 4 4-4"/></svg>
+              </div>
+              <div class="item-body"><div class="item-body-inner">
+                <div class="item-detail">
+                  <p class="item-summary">Dezeen's March events round-up includes the International Mass Timber Conference — relevant if you're tracking mid-rise timber trends in Ontario.</p>
+                  <a href="https://www.dezeen.com/2026/03/02/eight-architecture-design-events-march-dezeen-events-guide-2026/" class="item-link" target="_blank">Dezeen <svg viewBox="0 0 10 10"><path d="M2 8L8 2M4 2h4v4"/></svg></a>
+                </div>
+              </div></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sections -->
+
+  <footer class="footer">
+    <span class="footer-note">Brief generated March 17, 2026</span>
+    <span class="footer-note">Say <em>"dig into [topic]"</em> to go deeper on any item</span>
+  </footer>
+
+</div>
+
+<script>
+  function toggleSection(trigger) {
+    trigger.closest('.section').classList.toggle('open');
+  }
+  function toggleItem(trigger) {
+    trigger.closest('.item').classList.toggle('open');
+  }
+</script>
+</body>
+</html>
