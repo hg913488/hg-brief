@@ -278,6 +278,136 @@
       stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
     }
 
+    /* ── Sports Score Widget ── */
+    .scores-widget {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: rise 0.5s cubic-bezier(0.22,1,0.36,1) 0.14s forwards;
+    }
+
+    .score-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .score-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      opacity: 0.7;
+    }
+
+    .score-card-league {
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .score-card-teams {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .score-team {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .score-team--away { align-items: flex-start; }
+    .score-team--home { align-items: flex-end; }
+
+    .score-team-name {
+      font-family: var(--ff-display);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .score-team-loc {
+      font-size: 9px;
+      color: var(--text-dim);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .score-divider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .score-result {
+      font-family: var(--ff-display);
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .score-result--upcoming {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .score-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-sec);
+    }
+
+    .score-status-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--text-dim);
+      flex-shrink: 0;
+    }
+    .score-status-dot--live { background: #22c55e; box-shadow: 0 0 0 2px rgba(34,197,94,0.2); }
+    .score-status-dot--final { background: var(--text-dim); }
+    .score-status-dot--upcoming { background: var(--accent); opacity: 0.7; }
+
+    .score-card-footer {
+      border-top: 1px solid var(--border-soft);
+      padding-top: 7px;
+      margin-top: 6px;
+      font-size: 9px;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+
+    @media (max-width: 480px) {
+      .scores-widget { grid-template-columns: 1fr; }
+    }
+
     /* ── Footer ── */
     .footer {
       margin-top: 24px;
@@ -318,6 +448,57 @@
   <div class="greeting">
     <span class="greeting-eyebrow">Daily Brief</span>
     <h1 class="greeting-headline">Good morning, <em>HG.</em><br>Here's your brief.</h1>
+  </div>
+
+  <!-- ── SPORTS SCORE WIDGET ── -->
+  <div class="scores-widget">
+
+    <!-- Maple Leafs -->
+    <div class="score-card">
+      <div class="score-card-league">NHL · Mar 17</div>
+      <div class="score-card-teams">
+        <div class="score-team score-team--away">
+          <span class="score-team-name">Leafs</span>
+          <span class="score-team-loc">Toronto</span>
+        </div>
+        <div class="score-divider">
+          <span class="score-result">2 – 4</span>
+        </div>
+        <div class="score-team score-team--home">
+          <span class="score-team-name">Lightning</span>
+          <span class="score-team-loc">Tampa Bay</span>
+        </div>
+      </div>
+      <div class="score-status">
+        <span class="score-status-dot score-status-dot--final"></span>
+        Final
+      </div>
+      <div class="score-card-footer">Next: Mar 20 vs Ottawa · 7:00 PM</div>
+    </div>
+
+    <!-- Blue Jays -->
+    <div class="score-card">
+      <div class="score-card-league">MLB · Spring Training</div>
+      <div class="score-card-teams">
+        <div class="score-team score-team--away">
+          <span class="score-team-name">Blue Jays</span>
+          <span class="score-team-loc">Toronto</span>
+        </div>
+        <div class="score-divider">
+          <span class="score-result--upcoming">Mar 27</span>
+        </div>
+        <div class="score-team score-team--home">
+          <span class="score-team-name">Tigers</span>
+          <span class="score-team-loc">Detroit</span>
+        </div>
+      </div>
+      <div class="score-status">
+        <span class="score-status-dot score-status-dot--upcoming"></span>
+        Opening Day
+      </div>
+      <div class="score-card-footer">Gausman gets the ball · Rogers Centre</div>
+    </div>
+
   </div>
 
   <div class="sections">
