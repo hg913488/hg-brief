@@ -455,48 +455,48 @@
 
     <!-- Maple Leafs -->
     <div class="score-card">
-      <div class="score-card-league">NHL · Mar 17</div>
+      <div class="score-card-league" id="leafs-league">NHL · —</div>
       <div class="score-card-teams">
         <div class="score-team score-team--away">
           <span class="score-team-name">Leafs</span>
           <span class="score-team-loc">Toronto</span>
         </div>
-        <div class="score-divider">
-          <span class="score-result">2 – 4</span>
+        <div class="score-divider" id="leafs-divider">
+          <span class="score-result" id="leafs-score">—</span>
         </div>
         <div class="score-team score-team--home">
-          <span class="score-team-name">Lightning</span>
-          <span class="score-team-loc">Tampa Bay</span>
+          <span class="score-team-name" id="leafs-opp-name">—</span>
+          <span class="score-team-loc" id="leafs-opp-loc"></span>
         </div>
       </div>
       <div class="score-status">
-        <span class="score-status-dot score-status-dot--final"></span>
-        Final
+        <span class="score-status-dot" id="leafs-dot"></span>
+        <span id="leafs-status-text">Loading…</span>
       </div>
-      <div class="score-card-footer">Next: Mar 20 vs Ottawa · 7:00 PM</div>
+      <div class="score-card-footer" id="leafs-next"></div>
     </div>
 
     <!-- Blue Jays -->
     <div class="score-card">
-      <div class="score-card-league">MLB · Spring Training</div>
+      <div class="score-card-league" id="jays-league">MLB · —</div>
       <div class="score-card-teams">
         <div class="score-team score-team--away">
           <span class="score-team-name">Blue Jays</span>
           <span class="score-team-loc">Toronto</span>
         </div>
-        <div class="score-divider">
-          <span class="score-result--upcoming">Mar 27</span>
+        <div class="score-divider" id="jays-divider">
+          <span class="score-result" id="jays-score">—</span>
         </div>
         <div class="score-team score-team--home">
-          <span class="score-team-name">Tigers</span>
-          <span class="score-team-loc">Detroit</span>
+          <span class="score-team-name" id="jays-opp-name">—</span>
+          <span class="score-team-loc" id="jays-opp-loc"></span>
         </div>
       </div>
       <div class="score-status">
-        <span class="score-status-dot score-status-dot--upcoming"></span>
-        Opening Day
+        <span class="score-status-dot" id="jays-dot"></span>
+        <span id="jays-status-text">Loading…</span>
       </div>
-      <div class="score-card-footer">Gausman gets the ball · Rogers Centre</div>
+      <div class="score-card-footer" id="jays-next"></div>
     </div>
 
   </div>
@@ -783,6 +783,135 @@
   function toggleItem(trigger) {
     trigger.closest('.item').classList.toggle('open');
   }
+
+  // ── Helpers ──────────────────────────────────────────────────────
+  function fmtDate(isoStr) {
+    return new Date(isoStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+  }
+  function fmtTime(isoStr) {
+    return new Date(isoStr).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZone: 'America/Toronto' });
+  }
+
+  // Parse an ESPN event into { tor, opp, torScore, oppScore, isHome, date, startTime, status, period }
+  function parseESPN(event, abbrev) {
+    const comp  = event.competitions[0];
+    const teams = comp.competitors;
+    const tor   = teams.find(t => t.team.abbreviation === abbrev);
+    const opp   = teams.find(t => t.team.abbreviation !== abbrev);
+    const status = comp.status.type.name; // e.g. STATUS_FINAL, STATUS_SCHEDULED, STATUS_IN_PROGRESS
+    return {
+      tor, opp,
+      torScore: tor?.score?.displayValue ?? '—',
+      oppScore: opp?.score?.displayValue ?? '—',
+      isHome:   tor?.homeAway === 'home',
+      date:     event.date,
+      status,
+      period:   comp.status.period,
+      clock:    comp.status.displayClock,
+      oppShortName: opp?.team?.shortDisplayName || opp?.team?.displayName?.split(' ').slice(-1)[0] || '—',
+      oppCity:  opp?.team?.displayName?.split(' ').slice(0,-1).join(' ') || '',
+    };
+  }
+
+  function renderCard(ids, g, label) {
+    const isFinal    = g.status.includes('FINAL');
+    const isLive     = g.status.includes('IN_PROGRESS');
+    const isUpcoming = g.status.includes('SCHEDULED') || g.status.includes('PRE_SHOW');
+
+    document.getElementById(ids.oppName).textContent = g.oppShortName;
+    document.getElementById(ids.oppLoc).textContent  = g.oppCity;
+
+    if (isLive) {
+      document.getElementById(ids.league).textContent = `${label} · LIVE`;
+      document.getElementById(ids.score).textContent  = `${g.torScore} – ${g.oppScore}`;
+      document.getElementById(ids.score).className    = 'score-result';
+      document.getElementById(ids.dot).className      = 'score-status-dot score-status-dot--live';
+      document.getElementById(ids.statusText).textContent = `Live · P${g.period} ${g.clock}`;
+      document.getElementById(ids.next).textContent   = '';
+    } else if (isFinal) {
+      document.getElementById(ids.league).textContent = `${label} · ${fmtDate(g.date)}`;
+      document.getElementById(ids.score).textContent  = `${g.torScore} – ${g.oppScore}`;
+      document.getElementById(ids.score).className    = 'score-result';
+      document.getElementById(ids.dot).className      = 'score-status-dot score-status-dot--final';
+      document.getElementById(ids.statusText).textContent = 'Final';
+    } else if (isUpcoming) {
+      document.getElementById(ids.league).textContent = `${label} · Upcoming`;
+      document.getElementById(ids.score).textContent  = fmtDate(g.date);
+      document.getElementById(ids.score).className    = 'score-result--upcoming';
+      document.getElementById(ids.dot).className      = 'score-status-dot score-status-dot--upcoming';
+      document.getElementById(ids.statusText).textContent = fmtTime(g.date);
+    }
+  }
+
+  function renderNext(nextId, g, label) {
+    if (!g) return;
+    const loc = g.isHome ? 'vs' : '@';
+    document.getElementById(nextId).textContent =
+      `Next: ${fmtDate(g.date)} ${loc} ${g.oppShortName} · ${fmtTime(g.date)}`;
+  }
+
+  // ── Fetch Leafs via ESPN (CORS open, no key) ──────────────────
+  async function fetchLeafs() {
+    const ids = {
+      league: 'leafs-league', score: 'leafs-score', oppName: 'leafs-opp-name',
+      oppLoc: 'leafs-opp-loc', dot: 'leafs-dot', statusText: 'leafs-status-text', next: 'leafs-next'
+    };
+    try {
+      const res    = await fetch('https://site.api.espn.com/apis/site/v2/sports/hockey/nhl/teams/TOR/schedule?limit=20&seasontype=2');
+      const data   = await res.json();
+      const events = data.events || [];
+
+      const live     = events.find(e => e.competitions[0].status.type.name.includes('IN_PROGRESS'));
+      const past     = events.filter(e => e.competitions[0].status.type.name.includes('FINAL'));
+      const upcoming = events.filter(e => e.competitions[0].status.type.name.includes('SCHEDULED'));
+      const last     = past[past.length - 1];
+      const next     = upcoming[0];
+
+      if (live)       { renderCard(ids, parseESPN(live, 'TOR'), 'NHL'); return; }
+      if (last)       { renderCard(ids, parseESPN(last, 'TOR'), 'NHL'); }
+      if (next)       { renderNext(ids.next, parseESPN(next, 'TOR'), 'NHL'); }
+      if (!last && next) { renderCard(ids, parseESPN(next, 'TOR'), 'NHL'); }
+    } catch(e) {
+      document.getElementById(ids.statusText).textContent = 'Unavailable';
+      console.warn('Leafs fetch error:', e);
+    }
+  }
+
+  // ── Fetch Blue Jays via ESPN (spring training = seasontype 1, regular = 2) ──
+  async function fetchJays() {
+    const ids = {
+      league: 'jays-league', score: 'jays-score', oppName: 'jays-opp-name',
+      oppLoc: 'jays-opp-loc', dot: 'jays-dot', statusText: 'jays-status-text', next: 'jays-next'
+    };
+    try {
+      // Try regular season first, fall back to spring training
+      let events = [];
+      for (const st of [2, 1]) {
+        const res  = await fetch(`https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/teams/TOR/schedule?limit=20&seasontype=${st}`);
+        const data = await res.json();
+        events = data.events || [];
+        if (events.length) break;
+      }
+
+      const label    = events[0]?.competitions[0]?.type?.abbreviation === 'STR' ? 'Spring Training' : 'MLB';
+      const live     = events.find(e => e.competitions[0].status.type.name.includes('IN_PROGRESS'));
+      const past     = events.filter(e => e.competitions[0].status.type.name.includes('FINAL'));
+      const upcoming = events.filter(e => e.competitions[0].status.type.name.includes('SCHEDULED'));
+      const last     = past[past.length - 1];
+      const next     = upcoming[0];
+
+      if (live)            { renderCard(ids, parseESPN(live, 'TOR'), label); return; }
+      if (last)            { renderCard(ids, parseESPN(last, 'TOR'), label); }
+      if (next)            { renderNext(ids.next, parseESPN(next, 'TOR'), label); }
+      if (!last && next)   { renderCard(ids, parseESPN(next, 'TOR'), label); }
+    } catch(e) {
+      document.getElementById(ids.statusText).textContent = 'Unavailable';
+      console.warn('Jays fetch error:', e);
+    }
+  }
+
+  fetchLeafs();
+  fetchJays();
 </script>
 </body>
 </html>
