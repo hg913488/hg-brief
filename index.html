@@ -447,16 +447,49 @@
     ═══════════════════════════════════════════════ */
     @media (max-width: 720px) {
       .page { padding: 0 20px 60px; }
-      .body-grid { grid-template-columns: 1fr; }
+
+      /* Stack columns, content first */
+      .body-grid {
+        display: flex;
+        flex-direction: column;
+      }
+      .col-center {
+        order: 1;
+        padding: 20px 0 0;
+      }
       .col-left {
+        order: 2;
         border-right: none;
-        border-bottom: 1px solid var(--rule);
+        border-top: 1px solid var(--rule);
         padding: 20px 0;
+        /* Scores side-by-side */
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0 24px;
       }
-      .col-center { padding: 24px 0; }
+
+      /* Hide date on mobile — already on phone */
+      .date-widget { display: none; }
+
+      /* Scores panel fills its column */
+      .scores-panel {
+        grid-column: 1 / -1;
+        border-top: none;
+        padding-top: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 24px;
+      }
+      .scores-label {
+        grid-column: 1 / -1;
+        margin-bottom: 12px;
+      }
+      .score-blk {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+
       .nl-grid { grid-template-columns: 1fr; }
       .nl-item {
         padding: 0 !important;
@@ -467,8 +500,8 @@
     }
 
     @media (max-width: 480px) {
-      .col-left { grid-template-columns: 1fr; }
       .masthead-greeting { font-size: 44px; }
+      .masthead-tag { display: none; }
     }
   </style>
 </head>
@@ -478,7 +511,7 @@
   <!-- ═══ MASTHEAD ═══ -->
   <header class="masthead">
     <div class="masthead-greeting">Good Morning, HG.</div>
-    <span class="masthead-tag">Architecture &amp; Sport · Toronto</span>
+    <span class="masthead-tag">Architecture · Tech · Sports<br>Vancouver | Toronto</span>
   </header>
 
   <!-- ═══ SECTION STRIP ═══ -->
