@@ -300,17 +300,22 @@
       -webkit-tap-highlight-color: transparent;
     }
     details.item-row > summary::-webkit-details-marker { display: none; }
+    details.item-row > summary::marker { content: ''; display: none; }
 
     details.item-row > summary:hover .item-title {
       color: var(--muted);
     }
 
     .item-arrow {
-      font-size: 7px;
-      color: var(--accent);
       flex-shrink: 0;
+      width: 0;
+      height: 0;
+      border-top: 4px solid transparent;
+      border-bottom: 4px solid transparent;
+      border-left: 6px solid var(--accent);
       transition: transform 0.18s cubic-bezier(0.22,1,0.36,1);
       display: inline-block;
+      margin-right: 2px;
     }
     details[open] > summary .item-arrow { transform: rotate(90deg); }
 
@@ -581,7 +586,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
               <div class="item-title">Leafs 3-1 Loss to Islanders; 7th in Atlantic on the Bubble</div>
@@ -595,7 +600,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
               <div class="item-title">Blue Jays Home Opener Tuesday — Rogers Centre vs. Athletics</div>
@@ -609,7 +614,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">03</div>
               <div class="item-title">Sinner Wins Indian Wells — Completes All Six Hard Court Masters 1000</div>
@@ -623,7 +628,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">04</div>
               <div class="item-title">Sabalenka Wins Indian Wells WTA in Three-Set Epic vs. Rybakina</div>
@@ -645,7 +650,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
               <div class="item-title">Toronto Council OKs 1,087 Rental Units — 3 New Toronto Builds Sites</div>
@@ -659,7 +664,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
               <div class="item-title">Avenues Mid-Rise Zoning Passes — 282 km Now As-of-Right for 6 Storeys</div>
@@ -673,7 +678,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">03</div>
               <div class="item-title">Archicad 29 AI Assistant Enters Beta — Native Embedded Chatbot</div>
@@ -687,7 +692,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">04</div>
               <div class="item-title">2026: The Year Local AI Emerges in AEC</div>
@@ -701,7 +706,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">05</div>
               <div class="item-title">Stantec 2026 AEC Trends: "Vibe Coding" and Real-Time AI Analysis</div>
@@ -723,7 +728,7 @@
 
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
               <div class="item-title">OMA Opens Ellipsoidal Mushroom Pavilion at Casa Wabi, Oaxaca</div>
@@ -751,7 +756,7 @@
       <div class="nl-item">
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
               <div class="item-title">SOM Reveals "Iconic Complex" — Two-Tower Landmark in Kazakhstan</div>
@@ -767,7 +772,7 @@
       <div class="nl-item">
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
               <div class="item-title">Limbo Museum, Accra: Brutalist Revival via TAELON7 Installation</div>
@@ -783,7 +788,7 @@
       <div class="nl-item">
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">03</div>
               <div class="item-title">Concéntrico 2026 Reveals Program — Temporary Urban Installations in Logroño</div>
@@ -799,7 +804,7 @@
       <div class="nl-item">
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">04</div>
               <div class="item-title">International Mass Timber Conference Headlines March Design Events</div>
@@ -815,7 +820,7 @@
       <div class="nl-item">
         <details class="item-row">
           <summary>
-            <span class="item-arrow">▶</span>
+            <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">05</div>
               <div class="item-title">ArchDaily: The 20 Most Anticipated Projects of 2026</div>
