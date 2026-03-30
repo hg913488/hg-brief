@@ -42,7 +42,7 @@
     }
 
     /* ═══════════════════════════════════════════════
-       MASTHEAD — "Good Morning, HG." big
+       MASTHEAD
     ═══════════════════════════════════════════════ */
     .masthead {
       border-top: 4px solid var(--text);
@@ -110,13 +110,11 @@
       border-top: 1px solid var(--rule);
     }
 
-    /* LEFT: Date + Scores */
     .col-left {
       padding: 28px 20px 28px 0;
       border-right: 1px solid var(--rule);
     }
 
-    /* CENTER: Your World */
     .col-center {
       padding: 28px 0 28px 32px;
     }
@@ -234,7 +232,7 @@
       margin-top: 5px;
     }
 
-    /* ─── YOUR WORLD label (small, like old greeting) ─── */
+    /* ─── YOUR WORLD label ─── */
     .world-label {
       font-family: var(--ff-serif);
       font-size: 20px;
@@ -251,7 +249,7 @@
       margin-bottom: 24px;
     }
 
-    /* ─── SUB-SECTION HEADINGS: Sports / Business / Architecture ─── */
+    /* ─── SUB-SECTION HEADINGS ─── */
     .sub-section {
       margin-bottom: 4px;
     }
@@ -453,7 +451,6 @@
     @media (max-width: 720px) {
       .page { padding: 0 20px 60px; }
 
-      /* Stack columns, content first */
       .body-grid {
         display: flex;
         flex-direction: column;
@@ -467,16 +464,13 @@
         border-right: none;
         border-top: 1px solid var(--rule);
         padding: 20px 0;
-        /* Scores side-by-side */
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 0 24px;
       }
 
-      /* Hide date on mobile — already on phone */
       .date-widget { display: none; }
 
-      /* Scores panel fills its column */
       .scores-panel {
         grid-column: 1 / -1;
         border-top: none;
@@ -535,7 +529,7 @@
 
       <div class="date-widget">
         <span class="date-label">Today</span>
-        <div class="date-num date-num--day">26</div>
+        <div class="date-num date-num--day">30</div>
         <hr class="date-hr">
         <div class="date-num date-num--month">03</div>
         <hr class="date-hr">
@@ -572,7 +566,7 @@
 
     </div>
 
-    <!-- CENTER: Your World — Sports / Business / Architecture -->
+    <!-- CENTER: Your World -->
     <div class="col-center">
 
       <div class="world-label">Your World</div>
@@ -590,39 +584,11 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
-              <div class="item-title">Leafs Beat Rangers 4-3 — Woll Saves 40, Eliminates New York from Playoffs</div>
+              <div class="item-title">Sinner Wins Miami Open — Sunshine Double Locked, No Set Dropped All Fortnight</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Joseph Woll stopped 40 shots and added an assist as Toronto downed the Rangers 4-3 on March 25, officially eliminating New York from playoff contention. Fourth win in five games.</p>
-            <a href="https://www.nhl.com/news/new-york-rangers-toronto-maple-leafs-game-recap-march-25-2026" class="item-link" target="_blank">NHL.com →</a>
-          </div>
-        </details>
-
-        <details class="item-row">
-          <summary>
-            <span class="item-arrow"></span>
-            <span class="summary-text">
-              <div class="item-num">02</div>
-              <div class="item-title">Blue Jays Open Today vs. Athletics — Four Pitchers Already on the IL</div>
-            </span>
-          </summary>
-          <div class="item-body">
-            <p class="item-summary">Opening Day roster set: Berríos (elbow), Yesavage (shoulder), Bieber (elbow), and García (surgery) all open on the IL. Spencer Miles won the final bullpen spot; Leo Jiménez designated for assignment.</p>
-            <a href="https://bluejaysnation.com/news/toronto-blue-jays-announce-2026-opening-day-roster" class="item-link" target="_blank">Blue Jays Nation →</a>
-          </div>
-        </details>
-
-        <details class="item-row">
-          <summary>
-            <span class="item-arrow"></span>
-            <span class="summary-text">
-              <div class="item-num">03</div>
-              <div class="item-title">Alcaraz Stunned by Korda at Miami Open — 16-0 Start Ends in Round 3</div>
-            </span>
-          </summary>
-          <div class="item-body">
-            <p class="item-summary">Sebastian Korda upset world No. 1 Carlos Alcaraz 6-3, 5-7, 6-4, ending his perfect 16-0 2026 season and sending shockwaves through the Miami Open draw.</p>
+            <p class="item-summary">Jannik Sinner beat Jiri Lehecka 6-4, 6-4 to claim the Miami Open title, completing the Sunshine Double (Indian Wells + Miami) without dropping a single set across both events — a feat last achieved by Federer in 2017.</p>
             <a href="https://www.atptour.com/en/news/miami-2026-results" class="item-link" target="_blank">ATP Tour →</a>
           </div>
         </details>
@@ -631,13 +597,41 @@
           <summary>
             <span class="item-arrow"></span>
             <span class="summary-text">
-              <div class="item-num">04</div>
-              <div class="item-title">Miami Open QFs Today: Sinner vs. Tiafoe, Zverev vs. Cerundolo</div>
+              <div class="item-num">02</div>
+              <div class="item-title">Sabalenka Beats Gauff 6-2, 4-6, 6-3 — Women's Sunshine Double Complete</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Sinner chasing the Sunshine Double (Indian Wells + Miami) against Tiafoe, who survived a marathon to get here. Zverev faces Cerundolo in the other men's quarterfinal on March 26.</p>
-            <a href="https://www.atptour.com/en/news/zverev-halys-tiafoe-atmane-miami-2026-tuesday" class="item-link" target="_blank">ATP Tour →</a>
+            <p class="item-summary">Aryna Sabalenka overpowered home favourite Coco Gauff in three sets to win the Miami Open women's title, completing her own Sunshine Double after winning Indian Wells. A dominant hard-court stretch from the world No. 1.</p>
+            <a href="https://www.olympics.com/en/news/tennis-aryna-sabalenka-beats-coco-gauff-sunshine-double-miami-open-2026" class="item-link" target="_blank">Olympics.com →</a>
+          </div>
+        </details>
+
+        <details class="item-row">
+          <summary>
+            <span class="item-arrow"></span>
+            <span class="summary-text">
+              <div class="item-num">03</div>
+              <div class="item-title">Leafs at Ducks Tonight — Matthews Out for Season After Gudas Knee Hit, Revenge Game Loaded</div>
+            </span>
+          </summary>
+          <div class="item-body">
+            <p class="item-summary">Radko Gudas confirmed playing after his knee-on-knee hit ended Auston Matthews' season (5-game suspension). Nylander "drawing battle lines" as Toronto (75 pts) travels to Anaheim for a 10 PM ET tip. William Nylander now leads the offence.</p>
+            <a href="https://www.tsn.ca/nhl/article/gudas-status-in-doubt-as-maple-leafs-prepare-for-matthews-revenge-game-vs-ducks/" class="item-link" target="_blank">TSN →</a>
+          </div>
+        </details>
+
+        <details class="item-row">
+          <summary>
+            <span class="item-arrow"></span>
+            <span class="summary-text">
+              <div class="item-num">04</div>
+              <div class="item-title">Leafs Lost 5-1 to St. Louis Saturday — 31-30-13, Bubble Playoff Position</div>
+            </span>
+          </summary>
+          <div class="item-body">
+            <p class="item-summary">Jake McCabe's goal was the lone highlight in a lopsided loss to the Blues on March 28. At 75 points, Toronto sits in a fragile playoff spot heading into tonight's California road game. Every point counts.</p>
+            <a href="https://www.nhl.com/mapleleafs/news/game-day-vs-anaheim-mar-30-2026" class="item-link" target="_blank">NHL.com →</a>
           </div>
         </details>
 
@@ -646,12 +640,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">05</div>
-              <div class="item-title">Gauff Reaches First Miami Open Semifinal — Beats Bencic 6-3, 1-6, 6-3</div>
+              <div class="item-title">Miami Open Women's Doubles: Siniaková & Townsend Beat Errani/Paolini 7-6, 6-1</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Coco Gauff defeated Belinda Bencic in three sets on March 25, advancing to her first-ever Miami Open semifinal. A milestone result for the reigning US Open champion.</p>
-            <a href="https://www.ad-hoc-news.de/boerse/news/ueberblick/miami-open-2026-quarterfinals-locked-in-gauff-edges-bencic-sinner-and/68984574" class="item-link" target="_blank">Miami Open Results →</a>
+            <p class="item-summary">Katerina Siniaková and Taylor Townsend won the women's doubles title at Miami, defeating Sara Errani and Jasmine Paolini convincingly. The mixed-nationalities pairing dominated a high-profile Italian duo in straight sets.</p>
+            <a href="https://www.espn.com/tennis/scoreboard/tournament/_/year/2026/eventId/713-2026" class="item-link" target="_blank">ESPN Tennis →</a>
           </div>
         </details>
       </div>
@@ -668,12 +662,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
-              <div class="item-title">Toronto Council Approves Swansea Mews Redevelopment — 41 + 39 Storeys Near High Park</div>
+              <div class="item-title">Toronto Approves 1,087 Rental Units — 3 More Toronto Builds Sites Released for 1,523 Additional Homes</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Council voted today to demolish the condemned Swansea Mews complex, clearing the way for two rental towers (41 + 39 storeys) with 649 units — 154 replacement RGI + 42 affordable + 453 market. Shovels expected late 2026.</p>
-            <a href="https://urbantoronto.ca/news/2026/03/news-roundup-march-26-2026.60658" class="item-link" target="_blank">UrbanToronto →</a>
+            <p class="item-summary">Council approved zoning for 1,087 market and affordable rental units and unlocked three more Toronto Builds sites — 970 Kipling, 158 Borough Dr, 931 Yonge — targeting 1,523 further homes including 504 affordable units.</p>
+            <a href="https://ontarioconstructionnews.com/toronto-council-approves-zoning-for-1087-rental-units-under-toronto-builds-framework" class="item-link" target="_blank">Ontario Construction News →</a>
           </div>
         </details>
 
@@ -682,12 +676,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
-              <div class="item-title">Ford to Waive HST on New Homes for One Year — Demand-Side Push for Residential Starts</div>
+              <div class="item-title">61-Storey Condo Approved at 137 Church St — Grows from 54 Floors, Now 201m with 469 Units</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">The Ontario government plans to eliminate HST on new home purchases for 12 months to kickstart residential construction. Toronto school boards also seeking to allow housing on surplus land.</p>
-            <a href="https://urbantoronto.ca/news/2026/03/news-roundup-march-25-2026.60649" class="item-link" target="_blank">UrbanToronto →</a>
+            <p class="item-summary">Pemberton Group's Graziani + Corazza-designed tower at Church/Dalhousie gains 7 storeys and 26 metres in a revised submission, now reaching nearly 201m with 469 residential units — a significant downtown massing update driven by flight path adjustments.</p>
+            <a href="https://www.blogto.com/real-estate-toronto/2026/03/137-149-church-street-toronto/" class="item-link" target="_blank">BlogTO →</a>
           </div>
         </details>
 
@@ -696,12 +690,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">03</div>
-              <div class="item-title">Ford Declares Billy Bishop Airport a Special Economic Zone — Waterfront Land-Use Risk</div>
+              <div class="item-title">Ontario Budget Cancels SkyDome Act — Rogers Centre Land at 305 Bremner Now Open for Development</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Premier Ford plans to designate Billy Bishop a SEZ to allow jets — overriding city jurisdiction. Major waterfront and planning implications; Toronto councillors exploring legal challenges to the provincial move.</p>
-            <a href="https://urbantoronto.ca/news/2026/03/news-roundup-march-24-2026.60641" class="item-link" target="_blank">UrbanToronto →</a>
+            <p class="item-summary">The 2026 Ontario Budget kills the 2002 SkyDome Act that locked a large plot adjacent to the Rogers Centre as bus parking. New rules will remove development restrictions on 305 Bremner Blvd — major waterfront land-use implications.</p>
+            <a href="https://www.blogto.com/real-estate-toronto/2026/03/ontario-plan-redevelop-plot-land-rogers-centre/" class="item-link" target="_blank">BlogTO →</a>
           </div>
         </details>
 
@@ -710,12 +704,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">04</div>
-              <div class="item-title">Vancouver's First Official Development Plan Takes Effect March 31</div>
+              <div class="item-title">Vancouver OBC Exam Switches to 2024 Code Today — Existing Practitioners Unaffected</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Vancouver's inaugural ODP — a legally binding 30-year citywide land-use framework — comes into force on March 31. Projects with 50%+ residential aligned with the ODP skip public hearings entirely.</p>
-            <a href="https://dailyhive.com/vancouver/vancouver-approves-official-development-plan" class="item-link" target="_blank">Daily Hive →</a>
+            <p class="item-summary">All Ontario Building Code certification exams transition from the 2012 to the 2024 OBC effective March 30. Certified practitioners don't need to re-qualify, but exam prep materials must be updated. A meaningful shift for anyone hiring or training staff.</p>
+            <a href="https://www.oboa.on.ca/news/ontario-codenews-issue-378-transition-to-2024-building-code-examinations-effective-march-30-2026" class="item-link" target="_blank">OBOA →</a>
           </div>
         </details>
 
@@ -724,12 +718,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">05</div>
-              <div class="item-title">Ontario OBC Exam Transition to 2024 Code — Effective March 30</div>
+              <div class="item-title">Vancouver One-Bedroom Rents Down 14% YoY — Biggest Drop Ever Tracked</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">All Ontario Building Code certification exams switch from the 2012 to the 2024 OBC starting March 30. Existing certified practitioners don't need to re-qualify — but exam prep materials need updating now.</p>
-            <a href="https://www.oboa.on.ca/news/ontario-codenews-issue-378-transition-to-2024-building-code-examinations-effective-march-30-2026" class="item-link" target="_blank">OBOA →</a>
+            <p class="item-summary">Downtown Vancouver saw a nearly 14% year-over-year drop in one-bedroom rents — the largest single-year decline in the history of this report. Relief for renters, and a signal worth watching for multi-family residential underwriting.</p>
+            <a href="https://news.gov.bc.ca/releases/2026HMA0025-000308" class="item-link" target="_blank">BC Gov News →</a>
           </div>
         </details>
       </div>
@@ -746,12 +740,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
-              <div class="item-title">Smiljan Radic Wins the 2026 Pritzker Prize — "There Is No Message in What I Do"</div>
+              <div class="item-title">archicad-mcp: Open-Source Tool Lets Claude & ChatGPT Talk Directly to Your ArchiCAD Model</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Chilean architect Smiljan Radic — known for raw materiality and immediately recognizable work — is awarded the 2026 Pritzker Architecture Prize. He told Dezeen the win was a "surprise" and that his buildings carry no single message.</p>
-            <a href="https://www.dezeen.com/2026/03/25/smiljan-radic-pritzker-architecture-prize-winner-interview/" class="item-link" target="_blank">Dezeen →</a>
+            <p class="item-summary">Luka Gradišar's archicad-mcp enables AI agents to query live BIM models conversationally — ask "find all interior walls that aren't fire-rated near exit corridors" and get instant results. Pairs with Graphisoft's own AI Visualizer for ArchiCAD Technology Preview.</p>
+            <a href="https://www.myarchitectai.com/blog/archicad-ai-tools" class="item-link" target="_blank">MyArchitectAI →</a>
           </div>
         </details>
 
@@ -760,12 +754,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
-              <div class="item-title">Chaos Spring 2026 Update: AI Material Generator, Live CAD Links, 1,000+ New Assets</div>
+              <div class="item-title">Anthem Completing Georgetown 2 and Cascades in Metro Vancouver This Month — 573 Rental Units</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Chaos released major updates across Enscape, Veras, and Envision — including an AI Material Generator, new live links to SketchUp/Rhino/Revit in Envision, brush-based scene population, and 1,000+ new Cosmos vegetation assets.</p>
-            <a href="https://architosh.com/2026/03/chaos-delivers-major-product-line-updates/" class="item-link" target="_blank">Architosh →</a>
+            <p class="item-summary">Anthem's 31-storey Georgetown 2 in Surrey and its 573-unit Cascades towers (29 + 32 storeys, 20% below-market) are completing in March 2026, joining 26 major Metro Vancouver projects expected to reach occupancy this year.</p>
+            <a href="https://dailyhive.com/vancouver/metro-vancouver-construction-projects-completion-2026" class="item-link" target="_blank">Daily Hive →</a>
           </div>
         </details>
       </div>
@@ -778,7 +772,7 @@
   <div class="nl-band">
     <div class="nl-head">
       <div class="nl-head-label">Newsletter Recap</div>
-      <div class="nl-head-sub">Dezeen · ArchDaily · Architect Magazine</div>
+      <div class="nl-head-sub">Dezeen · ArchDaily · Architizer · BlogTO</div>
     </div>
     <div class="nl-grid">
 
@@ -788,12 +782,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
-              <div class="item-title">Dezeen Top Companies 2026 — Studio Gang, Grimshaw Among 20 Best Workplaces</div>
+              <div class="item-title">Kéré Architecture Designs 3,000 m² Healthcare Pavilion Network in Burundi</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Dezeen Jobs released its 2026 Top Companies list — 20 architecture and design studios setting new standards in employee experience, including Studio Gang and Grimshaw. A useful pulse on where the industry's talent wants to work.</p>
-            <a href="https://www.dezeen.com/2026/03/26/dezeen-jobs-announces-top-companies-2026/" class="item-link" target="_blank">Dezeen →</a>
+            <p class="item-summary">Francis Kéré's latest project distributes a healthcare complex across ten pavilions zigzagging a hillside in Bubanza, Burundi — 40km from Bujumbura. Cohesive in material logic and responsive to climate. Signature late-career civic work.</p>
+            <a href="https://www.archdaily.com/architecture-news" class="item-link" target="_blank">ArchDaily →</a>
           </div>
         </details>
       </div>
@@ -804,12 +798,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
-              <div class="item-title">OAA Names 20 Finalists for 2026 Design Excellence Awards</div>
+              <div class="item-title">Venice Art Biennale Central Pavilion to Reopen After Restoration by Labics + Fabio Fumagalli</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">The Ontario Association of Architects announced 20 finalists across housing, community centres, and public space — a strong annual cross-section of what's being built in Ontario right now.</p>
-            <a href="https://www.canadianarchitect.com/oaa-announces-2026-design-excellence-awards-finalists/" class="item-link" target="_blank">Canadian Architect →</a>
+            <p class="item-summary">The historic Central Pavilion at the Giardini della Biennale has been restored by Italian studio Labics and architect Fabio Fumagalli, set to reopen for the 2026 Venice Art Biennale — one of the most-visited architecture and design venues in the world.</p>
+            <a href="https://www.dezeen.com/architecture/" class="item-link" target="_blank">Dezeen →</a>
           </div>
         </details>
       </div>
@@ -820,12 +814,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">03</div>
-              <div class="item-title">iOS 26.4 Released: Stolen Device Protection On by Default, Video Podcast Support</div>
+              <div class="item-title">Toronto Approves Larger Multiplexes and Mid-Rise Buildings Across Avenues</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Apple shipped iOS 26.4 with 16 notable changes — Stolen Device Protection is now enabled by default, plus a new Playlist Playground in Apple Music, video podcast support, and ambient sound widgets.</p>
-            <a href="https://www.macrumors.com/2026/03/25/new-things-iphone-can-do-ios-26-4/" class="item-link" target="_blank">MacRumors →</a>
+            <p class="item-summary">Toronto Council approved new Rear Transition Performance Standards and zoning amendments for the city's Avenues — allowing larger multiplexes and more mid-rise density. A meaningful incremental step toward filling the missing middle.</p>
+            <a href="https://davieshowe.com/many-steps-forward-one-or-two-steps-back-new-rear-transition-performance-standards-and-zoning-amendments-approved-for-torontos-avenues/" class="item-link" target="_blank">Davies Howe →</a>
           </div>
         </details>
       </div>
@@ -836,12 +830,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">04</div>
-              <div class="item-title">Apple Announces 4 New US Manufacturing Partnerships — TSMC, GlobalFoundries, Domestic Glass</div>
+              <div class="item-title">46% of Architecture Professionals Now Using AI in Projects — Chaos + Architizer Survey</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Apple is accelerating domestic production with new partnerships: TSMC (Washington), Cirrus Logic/GlobalFoundries (New York), and US-sourced cover glass — part of a broader push to reduce supply chain exposure.</p>
-            <a href="https://9to5mac.com/2026/03/26/apple-details-4-new-ways-its-bringing-product-component-manufacturing-to-the-us/" class="item-link" target="_blank">9to5Mac →</a>
+            <p class="item-summary">A 2025 survey of 1,227 architecture professionals (Architizer × Chaos) found 46% already use AI tools in active projects and another 24% plan to start soon. Adoption is happening fast — the remaining 30% will feel it within a year.</p>
+            <a href="https://blog.chaos.com/ai-tools-for-architects" class="item-link" target="_blank">Chaos Blog →</a>
           </div>
         </details>
       </div>
@@ -852,12 +846,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">05</div>
-              <div class="item-title">Concéntrico 2026 (Jun 18–23): Smiljan Radic Designing a Foldable Temporary Structure</div>
+              <div class="item-title">Pan-African Biennale Launching September 7 in Nairobi — First to Unite All African Nations</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Spain's Concéntrico urban festival in Logroño announced 26 urban interventions — now-Pritzker-laureate Radic is contributing a light, foldable structure. One of architecture's best temporary-installation programs to follow.</p>
-            <a href="https://www.archdaily.com/1039787/concentrico-2026-features-smiljan-radic-installation-and-26-urban-interventions-in-logrono-spain" class="item-link" target="_blank">ArchDaily →</a>
+            <p class="item-summary">The inaugural Pan-African Biennale (PAB) — the first architecture platform to convene all African countries — launches September 7, 2026 in Nairobi. A historically significant moment for global architecture discourse worth tracking from day one.</p>
+            <a href="https://www.archdaily.com/architecture-news" class="item-link" target="_blank">ArchDaily →</a>
           </div>
         </details>
       </div>
@@ -869,7 +863,7 @@
 
   <!-- ═══ FOOTER ═══ -->
   <footer class="footer">
-    <span class="footer-note">Brief generated March 26, 2026</span>
+    <span class="footer-note">Brief generated March 30, 2026</span>
     <span class="footer-note">Say <em>"dig into [topic]"</em> to go deeper on any item</span>
   </footer>
 
