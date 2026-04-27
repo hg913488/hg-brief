@@ -9,13 +9,12 @@ Personal daily brief for Himank Goel — architecture, sports, business intel, a
 
 ## Daily Workflow
 
-1. Open Claude Code in `/Users/himankgoel/Documents/CLAUDE`
+1. Open Claude Code in `/Users/himankgoel/Documents/CLAUDE/hg-brief`
 2. Say **"brief me"** — Claude runs 3 web searches and generates the HTML
-3. Push to deploy:
+3. Push to deploy (always from inside the `hg-brief/` directory — never from the parent workspace):
 
 ```bash
-cd /Users/himankgoel/Documents/CLAUDE/hg-brief
-git add . && git commit -m "brief: Mar 18" && git push
+git add index.html && git commit -m "brief: Apr 27" && git push
 ```
 
 Vercel auto-deploys in ~30 seconds. Same URL every day.
@@ -77,7 +76,9 @@ To update: say **"update my brief setup"** in Claude and it will walk you throug
 hg-brief/
 ├── index.html       ← The brief (regenerated daily by Claude)
 ├── logo.png         ← HG monogram (GoelStudio brand asset)
+├── brief-auto.sh    ← LaunchAgent runner (automated 9AM trigger)
 ├── vercel.json      ← Vercel static deploy config
+├── CLAUDE.md        ← Claude instructions for this project
 ├── .gitignore
 └── README.md        ← This file
 ```
