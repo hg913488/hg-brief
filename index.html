@@ -41,9 +41,6 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* ═══════════════════════════════════════════════
-       MASTHEAD
-    ═══════════════════════════════════════════════ */
     .masthead {
       border-top: 4px solid var(--text);
       padding: 16px 0 12px;
@@ -72,9 +69,6 @@
       padding-bottom: 4px;
     }
 
-    /* ═══════════════════════════════════════════════
-       SECTION STRIP
-    ═══════════════════════════════════════════════ */
     .section-strip {
       border-top: 2px solid var(--text);
       border-bottom: 1px solid var(--rule);
@@ -99,11 +93,6 @@
       border-left: 1px solid var(--rule);
     }
 
-    .strip-item--accent { color: var(--accent); }
-
-    /* ═══════════════════════════════════════════════
-       TWO-COLUMN BODY
-    ═══════════════════════════════════════════════ */
     .body-grid {
       display: grid;
       grid-template-columns: 152px 1fr;
@@ -119,7 +108,6 @@
       padding: 28px 0 28px 32px;
     }
 
-    /* ─── DATE WIDGET ─── */
     .date-widget { margin-bottom: 28px; }
 
     .date-label {
@@ -149,7 +137,6 @@
       margin: 8px 0;
     }
 
-    /* ─── SCORES ─── */
     .scores-panel { border-top: 1px solid var(--rule); padding-top: 16px; }
 
     .scores-label {
@@ -220,7 +207,6 @@
       background: var(--dim);
       flex-shrink: 0;
     }
-    .score-dot--live     { background: #22c55e; box-shadow: 0 0 0 2px rgba(34,197,94,0.2); }
     .score-dot--final    { background: var(--dim); }
     .score-dot--upcoming { background: var(--accent); opacity: 0.8; }
 
@@ -232,7 +218,6 @@
       margin-top: 5px;
     }
 
-    /* ─── YOUR WORLD label ─── */
     .world-label {
       font-family: var(--ff-serif);
       font-size: 20px;
@@ -249,13 +234,8 @@
       margin-bottom: 24px;
     }
 
-    /* ─── SUB-SECTION HEADINGS ─── */
-    .sub-section {
-      margin-bottom: 4px;
-    }
-    .sub-section + .sub-section {
-      margin-top: 20px;
-    }
+    .sub-section { margin-bottom: 4px; }
+    .sub-section + .sub-section { margin-top: 20px; }
 
     .sub-head {
       display: flex;
@@ -282,7 +262,6 @@
       color: var(--dim);
     }
 
-    /* ─── COLLAPSIBLE ITEMS ─── */
     details.item-row {
       border-bottom: 1px solid var(--rule);
     }
@@ -300,9 +279,7 @@
     details.item-row > summary::-webkit-details-marker { display: none; }
     details.item-row > summary::marker { content: ''; display: none; }
 
-    details.item-row > summary:hover .item-title {
-      color: var(--muted);
-    }
+    details.item-row > summary:hover .item-title { color: var(--muted); }
 
     .item-arrow {
       flex-shrink: 0;
@@ -365,12 +342,7 @@
     }
     .item-link:hover { text-decoration: underline; }
 
-    /* ═══════════════════════════════════════════════
-       NEWSLETTER — FULL WIDTH
-    ═══════════════════════════════════════════════ */
-    .nl-band {
-      border-top: 3px solid var(--text);
-    }
+    .nl-band { border-top: 3px solid var(--text); }
 
     .nl-head {
       padding: 12px 0 10px;
@@ -400,27 +372,18 @@
       grid-template-columns: 1fr 1fr 1fr;
     }
 
-    .nl-item {
-      padding: 0 24px 0 0;
-    }
+    .nl-item { padding: 0 24px 0 0; }
     .nl-item:nth-child(3n+2) {
       padding-left: 24px;
       border-left: 1px solid var(--rule);
       border-right: 1px solid var(--rule);
       padding-right: 24px;
     }
-    .nl-item:nth-child(3n) {
-      padding-left: 24px;
-      padding-right: 0;
-    }
-    .nl-item--empty { border: none; }
+    .nl-item:nth-child(3n) { padding-left: 24px; padding-right: 0; }
 
     .nl-item details.item-row { border-bottom: 1px solid var(--rule); }
     .nl-item details.item-row:last-child { border-bottom: none; }
 
-    /* ═══════════════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════════════ */
     .footer {
       border-top: 1px solid var(--rule);
       margin-top: 32px;
@@ -440,25 +403,13 @@
       color: var(--dim);
     }
 
-    .footer-note em {
-      font-style: normal;
-      color: var(--muted);
-    }
+    .footer-note em { font-style: normal; color: var(--muted); }
 
-    /* ═══════════════════════════════════════════════
-       RESPONSIVE
-    ═══════════════════════════════════════════════ */
     @media (max-width: 720px) {
       .page { padding: 0 20px 60px; }
 
-      .body-grid {
-        display: flex;
-        flex-direction: column;
-      }
-      .col-center {
-        order: 1;
-        padding: 20px 0 0;
-      }
+      .body-grid { display: flex; flex-direction: column; }
+      .col-center { order: 1; padding: 20px 0 0; }
       .col-left {
         order: 2;
         border-right: none;
@@ -479,23 +430,11 @@
         grid-template-columns: 1fr 1fr;
         gap: 0 24px;
       }
-      .scores-label {
-        grid-column: 1 / -1;
-        margin-bottom: 12px;
-      }
-      .score-blk {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-      }
+      .scores-label { grid-column: 1 / -1; margin-bottom: 12px; }
+      .score-blk { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 
       .nl-grid { grid-template-columns: 1fr; }
-      .nl-item {
-        padding: 0 !important;
-        border-left: none !important;
-        border-right: none !important;
-      }
-      .nl-item--empty { display: none; }
+      .nl-item { padding: 0 !important; border-left: none !important; border-right: none !important; }
     }
 
     @media (max-width: 480px) {
@@ -507,13 +446,11 @@
 <body>
 <div class="page">
 
-  <!-- ═══ MASTHEAD ═══ -->
   <header class="masthead">
     <div class="masthead-greeting">Good Morning, HG.</div>
-    <div class="masthead-tag">Monday · April 13 · 2026</div>
+    <div class="masthead-tag">Monday · April 27 · 2026</div>
   </header>
 
-  <!-- ═══ SECTION STRIP ═══ -->
   <div class="section-strip">
     <span class="strip-item">Architecture</span>
     <span class="strip-item">Sports</span>
@@ -522,15 +459,13 @@
     <span class="strip-item">Toronto</span>
   </div>
 
-  <!-- ═══ TWO-COLUMN BODY ═══ -->
   <div class="body-grid">
 
-    <!-- LEFT: Date + Scores -->
     <div class="col-left">
 
       <div class="date-widget">
         <span class="date-label">Today</span>
-        <div class="date-num date-num--day">13</div>
+        <div class="date-num date-num--day">27</div>
         <hr class="date-hr">
         <div class="date-num date-num--month">04</div>
         <hr class="date-hr">
@@ -540,42 +475,50 @@
       <div class="scores-panel">
         <span class="scores-label">Scores</span>
 
-        <!-- LEAFS -->
         <div class="score-blk">
-          <div class="score-league">NHL · Final</div>
+          <div class="score-league">NHL · Offseason</div>
           <div class="score-team-name">Leafs</div>
-          <span class="score-opp">vs Panthers</span>
-          <div class="score-result">W · Apr 12</div>
+          <span class="score-opp">GM Search</span>
+          <div class="score-result">No GM</div>
           <div class="score-meta">
             <span class="score-dot score-dot--final"></span>
-            <span>Nylander scores · Woll stellar</span>
+            <span>Spezza declines · Hildeby emerges</span>
           </div>
-          <div class="score-next">Next: Apr 15 · regular season ends</div>
+          <div class="score-next">Missed playoffs · offseason rebuild</div>
         </div>
 
-        <!-- BLUE JAYS -->
         <div class="score-blk">
-          <div class="score-league">MLB · Final</div>
+          <div class="score-league">MLB · AL East</div>
           <div class="score-team-name">Blue Jays</div>
-          <span class="score-opp">vs Twins</span>
-          <div class="score-result">10–4 W</div>
+          <span class="score-opp">vs Red Sox</span>
+          <div class="score-result">11–15</div>
+          <div class="score-meta">
+            <span class="score-dot score-dot--upcoming"></span>
+            <span>Yesavage 2026 debut today</span>
+          </div>
+          <div class="score-next">Vladdy .328 · 5-game hit streak</div>
+        </div>
+
+        <div class="score-blk">
+          <div class="score-league">ATP/WTA · Madrid</div>
+          <div class="score-team-name">Madrid Open</div>
+          <span class="score-opp">R32 results</span>
+          <div class="score-result">Sabalenka W</div>
           <div class="score-meta">
             <span class="score-dot score-dot--final"></span>
-            <span>Schneider 2-for-3 · Varsho HR</span>
+            <span>def. Osaka 6-7 6-3 6-2</span>
           </div>
-          <div class="score-next">Springer IL · Kirk IL · Scherzer returning</div>
+          <div class="score-next">Alcaraz &amp; Swiatek both withdrew</div>
         </div>
       </div>
 
     </div>
 
-    <!-- CENTER: Your World + Business Intel -->
     <div class="col-center">
 
       <div class="world-label">Your World</div>
       <hr class="world-hr">
 
-      <!-- SPORTS -->
       <div class="sub-section">
         <div class="sub-head">
           <span class="sub-head-label">Sports</span>
@@ -587,12 +530,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
-              <div class="item-title">Leafs Win Over Florida — Nylander Goal, Woll Save Headline Dead-Rubber Finale</div>
+              <div class="item-title">Leafs Miss Playoffs, Spezza Declines GM Role — Hildeby (.914) the One Bright Spot</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">William Nylander scored and Joseph Woll delivered highlight-reel saves as Toronto beat the Panthers on April 12 — a feel-good end to what's been a forgettable season. Elimination already secured; GM search now the top story heading into the offseason.</p>
-            <a href="https://www.nhl.com/mapleleafs/" class="item-link" target="_blank">NHL.com →</a>
+            <p class="item-summary">Toronto's disappointing 2025-26 season is over and the front office is in limbo. Jason Spezza declined the GM job, and the team is in a holding pattern until ownership names a new leader. Meanwhile, Dennis Hildeby — 24, fourth-round pick — posted a .914 SV% in 20 games and is forcing a real crease conversation.</p>
+            <a href="https://thehockeywriters.com/former-maple-leafs-veteran-reportedly-declines-toronto-gm-offer/" class="item-link" target="_blank">The Hockey Writers →</a>
           </div>
         </details>
 
@@ -601,12 +544,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
-              <div class="item-title">Blue Jays Rout Twins 10–4 — Schneider and Varsho Lead Rare Offensive Explosion</div>
+              <div class="item-title">Blue Jays 11–15, Trey Yesavage Makes 2026 Debut vs. Red Sox Today</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Davis Schneider went 2-for-3 with 2 RBIs, Daulton Varsho hit a solo homer, and the Jays cruised past Minnesota Friday. Bright spot amid an injury-riddled roster — Springer (toe), Kirk (thumb) both on IL, but Scherzer is returning from forearm tendonitis.</p>
-            <a href="https://www.mlb.com/bluejays/news" class="item-link" target="_blank">MLB.com →</a>
+            <p class="item-summary">The Jays' top prospect and 2025 World Series breakout star comes off the IL to make his 2026 debut against Boston today. Vladdy Jr. is hitting .328 with a 5-game streak but closer Jeff Hoffman's role is under review. Prospect Pinango also called up; Lukes (hamstring) hits the IL.</p>
+            <a href="https://www.bluebirdbanter.com/news/61714/sunday-bantering-jays-notes" class="item-link" target="_blank">Bluebird Banter →</a>
           </div>
         </details>
 
@@ -615,12 +558,12 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">03</div>
-              <div class="item-title">Clay Season Kicks Off — Barcelona, Munich, Stuttgart and Rouen All Live Today</div>
+              <div class="item-title">Sabalenka Grinds Past Osaka in Three Sets — Alcaraz and Swiatek Out of Madrid</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">The European clay swing is officially underway with four simultaneous ATP/WTA events today — April 13. First-round matches across all four tournaments run from morning through evening. After Sinner's dominant hard-court sweep, all eyes on clay-court form as French Open prep begins.</p>
-            <a href="https://tennisconnected.com/atp-and-wta-2026-schedule-of-play-for-monday-april-13-for-barcelona-munich-stuttgart-and-rouen/" class="item-link" target="_blank">Tennis Connected →</a>
+            <p class="item-summary">Aryna Sabalenka survived Naomi Osaka 6-7, 6-3, 6-2 on Monday at the Mutua Madrid Open. Also: Sinner dismantled Elmer Moller 6-2, 6-3 on Sunday, Ruud crushed Davidovich Fokina 6-3, 6-1, and Medvedev rolled Budkov Kjaer 6-3, 6-2. Both Alcaraz (wrist) and Swiatek (illness) withdrew.</p>
+            <a href="https://www.olympics.com/en/news/tennis-madrid-mutua-open-2026-results-live-schedule-order-of-play" class="item-link" target="_blank">Olympics.com →</a>
           </div>
         </details>
 
@@ -629,17 +572,16 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">04</div>
-              <div class="item-title">Leafs GM Search Heats Up — Committee Model Scrapped, One Powerhouse Leader Sought</div>
+              <div class="item-title">Leylah Fernandez Wins at Madrid — Canadian Beats Ann Li 6-3, 6-2</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Toronto is moving away from the GM-by-committee model that defined their recent years and is targeting a single decisive front office leader. With Matthews recovering from MCL and OEL out, the roster rebuild will fall entirely on whoever takes the job this summer.</p>
-            <a href="https://mapleleafsaggr.com/" class="item-link" target="_blank">Leafs Aggregator →</a>
+            <p class="item-summary">Leylah Fernandez (24) dispatched Ann Li (31) 6-3, 6-2 in straight sets at the Mutua Madrid Open on Monday. A clean, confident win on clay as Fernandez continues building her campaign ahead of Roland Garros. Montreal will be watching.</p>
+            <a href="https://wtop.com/sports/2026/04/world-tour-mutua-madrid-open-results-7/" class="item-link" target="_blank">WTOP Sports →</a>
           </div>
         </details>
       </div>
 
-      <!-- BUSINESS INTEL -->
       <div class="sub-section">
         <div class="sub-head">
           <span class="sub-head-label">Business Intel</span>
@@ -651,11 +593,39 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
-              <div class="item-title">Vancouver Smashes 2025 Housing Target — 12,500 Approved, 40-Year Rental Delivery Record</div>
+              <div class="item-title">BC Overrides West Vancouver — Forces 3–16 Storey Buildings in Ambleside Core</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">The City of Vancouver approved more than 12,500 new homes in 2025 — 54% above its annual target of 8,300. 2,300 purpose-built rental units reached completion, the highest single-year rental delivery in over four decades. A benchmark moment for BC housing supply.</p>
+            <p class="item-summary">On April 7, the BC government issued an Order in Council forcing West Vancouver to adopt the Ambleside Centre Local Area Plan — allowing 3-to-16-storey mixed-use buildings in the commercial core. The municipality delivered only 58 of a mandated 220 housing units by the Dec. 31, 2025 deadline. Multiplexes province-wide are next.</p>
+            <a href="https://www.cbc.ca/news/canada/british-columbia/bc-government-west-vancouver-ambleside-plan-9.7156218" class="item-link" target="_blank">CBC News →</a>
+          </div>
+        </details>
+
+        <details class="item-row">
+          <summary>
+            <span class="item-arrow"></span>
+            <span class="summary-text">
+              <div class="item-num">02</div>
+              <div class="item-title">Vancouver C-2A Rezoning: 2,348 Properties Fast-Tracked for 6–8 Storey Rental Buildings</div>
+            </span>
+          </summary>
+          <div class="item-body">
+            <p class="item-summary">Vancouver is proposing a new C-2A zoning district that would convert ~2,348 commercial properties along major arterials for faster rental housing and hotel approvals up to 6-8 storeys — no individual rezoning applications needed. A significant simplification of the approval pipeline for mid-rise residential.</p>
+            <a href="https://dailyhive.com/vancouver/vancouver-c-2a-rental-housing-hotels-zoning" class="item-link" target="_blank">Daily Hive →</a>
+          </div>
+        </details>
+
+        <details class="item-row">
+          <summary>
+            <span class="item-arrow"></span>
+            <span class="summary-text">
+              <div class="item-num">03</div>
+              <div class="item-title">Vancouver Smashes Housing Target — 12,500 Homes Approved, 40-Year Rental Delivery Record</div>
+            </span>
+          </summary>
+          <div class="item-body">
+            <p class="item-summary">The City of Vancouver approved 12,500+ new homes in 2025 — 54% above target — including 2,300 purpose-built rentals completed, the most in four decades. Meanwhile BC's April rental report shows Vancouver asking rents down 14.1% from their 2023 peak as supply catches up.</p>
             <a href="https://vancouver.ca/news-calendar/vancouver-surpasses-2025-housing-targets-april-2026.aspx" class="item-link" target="_blank">City of Vancouver →</a>
           </div>
         </details>
@@ -664,41 +634,13 @@
           <summary>
             <span class="item-arrow"></span>
             <span class="summary-text">
-              <div class="item-num">02</div>
-              <div class="item-title">Vancouver's Zoning Overhaul Draws National Praise — 8–32 Units Per Lot Now Permitted</div>
-            </span>
-          </summary>
-          <div class="item-body">
-            <p class="item-summary">Vancouver's planned zoning reforms — allowing 8 to 32 housing units per acre in residential zones, and up to 6-storey medium-scale buildings — are being called "sensible" and overdue. The changes build on Bill 44 multiplexing mandates already transforming how lots get built across BC.</p>
-            <a href="https://www.columbian.com/news/2026/apr/09/in-our-view-vancouvers-planned-zoning-changes-sensible/" class="item-link" target="_blank">The Columbian →</a>
-          </div>
-        </details>
-
-        <details class="item-row">
-          <summary>
-            <span class="item-arrow"></span>
-            <span class="summary-text">
-              <div class="item-num">03</div>
-              <div class="item-title">Squamish Nation Shows Cities How It's Done — 6,000 Homes in 12 Years on Vancouver Land</div>
-            </span>
-          </summary>
-          <div class="item-body">
-            <p class="item-summary">The Squamish Nation bypasses Vancouver zoning constraints by operating under federal jurisdiction — letting them build 6,000+ homes in the Senápilh project at a pace the City can't match. A case study in what's possible when regulatory friction is removed from urban housing delivery.</p>
-            <a href="https://www.wfae.org/united-states-world/2026-04-09/in-vancouver-squamish-nation-builds-what-many-cities-struggle-to-lots-of-housing" class="item-link" target="_blank">WFAE / NPR →</a>
-          </div>
-        </details>
-
-        <details class="item-row">
-          <summary>
-            <span class="item-arrow"></span>
-            <span class="summary-text">
               <div class="item-num">04</div>
-              <div class="item-title">Agentic AI Arrives in Architecture Workflows — MCP-Powered Tools Operate Software Autonomously</div>
+              <div class="item-title">Hariri Pontarini + Snøhetta Win Ontario Science Centre — 400,000 sq ft in Toronto</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Larger firms are deploying agentic AI using the Model-Context-Protocol (MCP) framework to automate the design pipeline end-to-end — combining numerical evaluation with design visualization without human handoffs. Tools like ComfyUI are becoming the orchestration layer for multi-step architectural workflows.</p>
-            <a href="https://www.ribaj.com/intelligence/how-architects-use-and-will-use-ai-in-2026-and-beyond/" class="item-link" target="_blank">RIBA Journal →</a>
+            <p class="item-summary">Toronto-based Hariri Pontarini Architects and Oslo's Snøhetta have been selected to design the new Ontario Science Centre. The 400,000 sq ft facility features a 220,000 sq ft building defined by scalloped, modular volumes — a major civic commission for one of Canada's most-watched firms.</p>
+            <a href="https://www.archdaily.com/tag/toronto" class="item-link" target="_blank">ArchDaily →</a>
           </div>
         </details>
 
@@ -707,40 +649,38 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">05</div>
-              <div class="item-title">Toronto Transit Zoning Opens Up Near 120 Stations — Public Info Sessions Underway</div>
+              <div class="item-title">AI Generative Design Now Optimizes Massing, Zoning, and Pro Forma Simultaneously</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Toronto is rolling out major zoning changes permitting more housing within walking distance of 120 transit stations — and is holding public sessions for residents to learn about what's allowed. A signal that station-area intensification is accelerating ahead of the 2030 provincial target.</p>
-            <a href="https://www.toronto.ca/news/city-of-toronto-welcomes-residents-to-learn-about-new-zoning-changes-to-permit-more-housing-near-120-transit-stations/" class="item-link" target="_blank">City of Toronto →</a>
+            <p class="item-summary">Canadian real estate developers are deploying AI to generate hundreds of building configurations per site — varying unit mix, floor plate efficiency, and massing while simultaneously stress-testing for zoning compliance, shadow impact, and financial returns. Real-time trade-off evaluation is replacing iterative design revisions.</p>
+            <a href="https://www.newswire.com/news/how-artificial-intelligence-is-reshaping-canadian-real-estate-development" class="item-link" target="_blank">Newswire →</a>
           </div>
         </details>
       </div>
 
-    </div><!-- /.col-center -->
-  </div><!-- /.body-grid -->
+    </div>
+  </div>
 
-  <!-- ═══ NEWSLETTER RECAP — FULL WIDTH ═══ -->
   <div class="nl-band">
     <div class="nl-head">
       <span class="nl-head-label">Newsletter Recap</span>
-      <span class="nl-head-sub">Dezeen · ArchDaily · RIBA Journal</span>
+      <span class="nl-head-sub">Dezeen · ArchDaily · Architizer</span>
     </div>
 
     <div class="nl-grid">
-      <!-- COL 1 -->
       <div class="nl-item">
         <details class="item-row">
           <summary>
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">01</div>
-              <div class="item-title">Architects Must Design for the Next Pandemic — Dezeen Op-Ed Calls for Public Health Collaboration</div>
+              <div class="item-title">Milan Design Week's Six Trends: Inflatable IKEA Chairs and Sci-Fi Lighting Dominate</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Published today on Dezeen, Diego S Silva, Enya Moore, and Chris L Smith argue that architects and public health officials must build formal partnerships now — not after the next outbreak — to design more resilient civic infrastructure. A call to professionalize what's been ad hoc.</p>
-            <a href="https://www.dezeen.com/2026/04/13/pandemic-diego-s-silva-enya-moore-chris-l-smith-opinion/" class="item-link" target="_blank">Dezeen →</a>
+            <p class="item-summary">Dezeen's April 27 trend roundup from Milan Design Week (just concluded) names inflatables and sci-fi lamps as the defining motifs — IKEA debuted a blow-up seat in a Marcel Breuer frame, Škoda and USM went inflatable too. 2026 was "the year of cancellations" due to geopolitics and budget cuts, yielding fewer bombastic installations.</p>
+            <a href="https://www.dezeen.com/2026/04/27/milan-design-week-trends-2026-inflatable-furniture-sci-fi/" class="item-link" target="_blank">Dezeen →</a>
           </div>
         </details>
 
@@ -749,29 +689,28 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">02</div>
-              <div class="item-title">Sydney Harbour Bridge Gets a Cycleway — Serpentine Ramp by Aspect Studios and Collins and Turner</div>
+              <div class="item-title">Yinka Ilori Launches Veuve Clicquot Collection at Milan — Colour-Forward Brand Collab</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">The new Sydney Harbour Bridge Cycleway Ramp — designed by Aspect Studios and Collins and Turner — uses the industrial palette of the bridge itself as its reference. A sinuous infrastructure addition that turns a functional connection into a civic landmark.</p>
-            <a href="https://www.dezeen.com/" class="item-link" target="_blank">Dezeen →</a>
+            <p class="item-summary">London designer Yinka Ilori unveiled a new collection for Veuve Clicquot at Milan Design Week, continuing his high-profile brand collaboration streak. The work draws on his signature bold colour language and pattern-driven approach — a visible marker of how luxury brands are using design week as a launch platform.</p>
+            <a href="https://www.dezeen.com/2026/04/27/yinka-ilori-veuve-clicquot-collection-milan-design-week/" class="item-link" target="_blank">Dezeen →</a>
           </div>
         </details>
       </div>
 
-      <!-- COL 2 -->
       <div class="nl-item">
         <details class="item-row">
           <summary>
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">03</div>
-              <div class="item-title">Generative AI in Architecture Hits $1.48B — Market on Track for $5.85B by 2029</div>
+              <div class="item-title">BIG London Staff Protest Layoffs — Nearly Half the Broadgate Office at Risk</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">The generative AI architecture market was valued at $1.48 billion in 2025 and is projected to reach $5.85 billion by 2029 at a 41.1% CAGR. Only 27% of AEC professionals use AI today — but 94% of those users plan to expand. The adoption gap is the biggest story in AEC tech right now.</p>
-            <a href="https://illustrarch.com/artificial-intelligence/72649-ai-architecture-design.html" class="item-link" target="_blank">Illustrarch →</a>
+            <p class="item-summary">Employees at Bjarke Ingels Group's London office in Broadgate staged a protest against proposed layoffs that would put nearly half the workforce at risk of redundancy. A sharp reminder that even the most prolific firms are navigating difficult economic conditions — and that labour tension in architecture is becoming more visible.</p>
+            <a href="https://www.dezeen.com/2026/04/06/architects-us-department-state-dureau-overseas-buildings-operations/" class="item-link" target="_blank">Dezeen →</a>
           </div>
         </details>
 
@@ -780,29 +719,28 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">04</div>
-              <div class="item-title">Salone del Mobile Returns Apr 22–27 — 1,900 Exhibitors, Sold-Out Floor Space in Milan</div>
+              <div class="item-title">Niall McLaughlin Named 2026 Royal Gold Medal Recipient — RIBA's Highest Architecture Honour</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">The 64th edition of Salone del Mobile.Milano runs April 22–27 at Rho Fiera, with 1,900+ exhibitors across 169,000 sq m of fully sold-out exhibition space. The biggest design fair on earth kicks off in nine days — worth tracking for material and product trends hitting residential interiors.</p>
-            <a href="https://www.archdaily.com/architecture-news" class="item-link" target="_blank">ArchDaily →</a>
+            <p class="item-summary">Irish architect Niall McLaughlin has been named the 2026 Royal Gold Medal recipient by the Royal Institute of British Architects — architecture's most prestigious individual honour. McLaughlin is known for quiet, material-rich work that resists spectacle. A well-regarded choice that signals what the profession values right now.</p>
+            <a href="https://www.dezeen.com/architecture/" class="item-link" target="_blank">Dezeen →</a>
           </div>
         </details>
       </div>
 
-      <!-- COL 3 -->
       <div class="nl-item">
         <details class="item-row">
           <summary>
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">05</div>
-              <div class="item-title">"Vibe Coding" Hits Architecture Offices — Designers Writing Software with Natural Language Prompts</div>
+              <div class="item-title">What Architects Want From AI in 2026 — Reliability and Authorship Over Raw Capability</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">Stantec's 2026 AEC trends report flags "vibe coding" — using AI to build small bespoke tools via natural language — as an emerging skill in design offices. Architects who can describe a tool faster than they can code it are building custom workflows in hours. No prior dev experience required.</p>
-            <a href="https://www.stantec.com/en/ideas/topic/buildings/2026-aec-trends-part-2-ai-in-architecture-vibe-coding-real-time-analysis-data" class="item-link" target="_blank">Stantec Ideas →</a>
+            <p class="item-summary">A new ArchDaily survey of architects on AI adoption finds that the conversation has shifted: firms no longer ask whether to use AI but how to integrate it without surrendering authorship or reliability. Most want tools that augment judgment, not replace it — a meaningful signal for how AI design tools should be positioned and sold.</p>
+            <a href="https://www.archdaily.com/1040024/what-architects-expect-from-ai-tools-in-2026" class="item-link" target="_blank">ArchDaily →</a>
           </div>
         </details>
 
@@ -811,24 +749,23 @@
             <span class="item-arrow"></span>
             <span class="summary-text">
               <div class="item-num">06</div>
-              <div class="item-title">Goldstein Heather Adds Four-Storey Arched Extension to Victorian London Terrace</div>
+              <div class="item-title">Montréal Design Week Launches Tomorrow — 20th Anniversary of UNESCO City of Design Status</div>
             </span>
           </summary>
           <div class="item-body">
-            <p class="item-summary">London studio Goldstein Heather transformed a Victorian terrace with a four-storey rear extension featuring arched openings and a sculptural timber staircase — a refined addition that earns its place without mimicking the original. Clean execution of a difficult brief.</p>
-            <a href="https://www.dezeen.com/architecture/" class="item-link" target="_blank">Dezeen →</a>
+            <p class="item-summary">The inaugural Montréal Design Week runs April 28–May 7, 2026, timed to the city's 20th anniversary as a UNESCO City of Design. A first-edition event worth watching — Montréal's design identity is distinct from Toronto's and this could establish it as a serious North American design week on the calendar.</p>
+            <a href="https://www.archdaily.com/1036637/the-architecture-agenda-inside-the-key-events-of-2026" class="item-link" target="_blank">ArchDaily →</a>
           </div>
         </details>
       </div>
-    </div><!-- /.nl-grid -->
-  </div><!-- /.nl-band -->
+    </div>
+  </div>
 
-  <!-- ═══ FOOTER ═══ -->
   <footer class="footer">
-    <div class="footer-note">Brief generated <em>April 13, 2026</em></div>
+    <div class="footer-note">Brief generated <em>April 27, 2026</em></div>
     <div class="footer-note">Say <em>"dig into [topic]"</em> to go deeper on any item.</div>
   </footer>
 
-</div><!-- /.page -->
+</div>
 </body>
 </html>
